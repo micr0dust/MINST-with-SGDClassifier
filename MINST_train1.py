@@ -11,7 +11,7 @@ train_df = pd.read_csv("./input/train.csv")
 train_data = train_df.values
 
 labels = train_data[:,0]
-train = train_data[:,1:]
+train = train_data[:,1:]/255
 
 clf = make_pipeline(SGDClassifier(max_iter=100000))
 
