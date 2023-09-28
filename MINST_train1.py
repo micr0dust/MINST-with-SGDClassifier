@@ -11,10 +11,10 @@ train_df = pd.read_csv("./input/train.csv")
 train_data = train_df.values
 
 labels = train_data[:,0]
-train = train_data[:,1:]/255
+train = train_data[:,1:]
 
 clf = make_pipeline(SGDClassifier(max_iter=10000))
 
-scores = cross_val_score(clf, train, labels, cv=3, scoring='accuracy')
+scores = cross_val_score(clf, train, labels, cv=5, scoring='accuracy')
 print(scores)
 print(scores.mean())
