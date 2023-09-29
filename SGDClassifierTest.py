@@ -1,3 +1,6 @@
+"""
+    Sklearn 官方的 SGDClassifier 範例
+"""
 import numpy as np
 from sklearn.linear_model import SGDClassifier
 from sklearn.preprocessing import StandardScaler
