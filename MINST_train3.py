@@ -12,8 +12,8 @@
     - 驗證集只取 train[5*i] 的原資料
 """
 """ Output:
-[0.91021429 0.9145     0.90828571]
-0.911
+[0.90985 0.90635 0.91515]
+0.91045
 """
 import numpy as np
 from sklearn.linear_model import SGDClassifier

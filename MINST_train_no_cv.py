@@ -7,7 +7,7 @@
     - 輸出 confusion matrix 圖檔後的那串數字是訓練張數-驗證張數。
 """
 """ Output
-score: 0.913
+score: 0.9182
 """
 import numpy as np
 from sklearn.linear_model import SGDClassifier

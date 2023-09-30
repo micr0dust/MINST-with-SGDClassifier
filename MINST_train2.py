@@ -9,8 +9,8 @@
     - 改用 array_split 切成 3 分比較快
 """
 """ Output:
-[0.90942857 0.91057143 0.91178571]
-0.9105952380952381
+[0.9102 0.9073 0.9127]
+0.9100666666666667
 """
 import numpy as np
 from sklearn.linear_model import SGDClassifier

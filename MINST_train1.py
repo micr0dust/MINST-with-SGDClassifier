@@ -5,8 +5,8 @@
     - max_iter 原本是 1000，但因為會無法收斂就調 10000。
 """
 """ Output:
-[0.90564286 0.91292857 0.89907143]
-0.9058809523809522
+[0.90975 0.9074  0.9114 ]
+0.9095166666666666
 """
 import numpy as np
 from sklearn.linear_model import SGDClassifier
