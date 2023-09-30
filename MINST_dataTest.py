@@ -17,9 +17,7 @@ train_data = train_df.values
 labels = train_data[:,0]
 train = train_data[:,1:]
 
-imgId = 0
-print({'label': labels[imgId]})
-print({'size':np.size(train[imgId]), 'data': train[imgId]})
+print(f"train size: {len(train)}")
 
 def plot_image(image, fileName="test_digit"):
     fig=plt.gcf()
@@ -27,8 +25,17 @@ def plot_image(image, fileName="test_digit"):
     plt.imshow(image, cmap='binary')
     plt.savefig(f'./img/{fileName}.png')
 
-plot_image(train[imgId].reshape((28,28)))
-plot_image(shift(train[imgId].reshape((28,28)), [0,10], cval=0), "test_digit2")
+def getImg(a, b):
+    for i in range(a,b):
+        plot_image(train[i].reshape((28,28)), f"test_digit{i}")
+
+def imgInfo(idx):
+    print({'label': labels[idx]})
+    print({'size':np.size(train[idx]), 'data': train[idx]})
+
+# getImg(imgId, imgId)    
+
+# plot_image(shift(train[imgId].reshape((28,28)), [0,10], cval=0), "test_digit2")
 # clf = make_pipeline(StandardScaler(),
 #                     SGDClassifier(max_iter=1000, tol=1e-3))
 # clf.fit(X, Y)

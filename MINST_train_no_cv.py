@@ -6,6 +6,9 @@
     - max_iter 原本是 1000，但因為會無法收斂就調 10000。
     - 輸出 confusion matrix 圖檔後的那串數字是訓練張數-驗證張數。
 """
+""" Output
+score: 0.913
+"""
 import numpy as np
 from sklearn.linear_model import SGDClassifier
 from sklearn.preprocessing import StandardScaler

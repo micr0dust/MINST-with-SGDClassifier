@@ -4,6 +4,10 @@
     - 有除 255 正規化。
     - max_iter 原本是 1000，但因為會無法收斂就調 10000。
 """
+""" Output:
+[0.90564286 0.91292857 0.89907143]
+0.9058809523809522
+"""
 import numpy as np
 from sklearn.linear_model import SGDClassifier
 from sklearn.preprocessing import StandardScaler

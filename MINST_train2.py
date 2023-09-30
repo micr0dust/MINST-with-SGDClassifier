@@ -6,6 +6,11 @@
     - 有除 255 正規化。
     - max_iter 原本是 1000，但因為會無法收斂就調 10000。
     - 輸出 confusion matrix 圖檔後的那串數字是訓練張數-驗證張數。
+    - 改用 array_split 切成 3 分比較快
+"""
+""" Output:
+[0.90942857 0.91057143 0.91178571]
+0.9105952380952381
 """
 import numpy as np
 from sklearn.linear_model import SGDClassifier
@@ -33,25 +38,29 @@ def plotConfMatric(true_labels, predicted_labels, fileName="confusion_matrix"):
     # plt.show()
     plt.savefig(f'img/{fileName}.png')
 
-def modify(data, label):
+def modify(data, labels):
     actions = [[1,0],[-1,0],[0,1],[0,-1]]
-    res_data = np.array(data)
-    res_label = np.array(label)
+    res_data = []
+    res_label = []
     N = len(data)
-    for i in range(N):
-        if i%(int(N/10))==0:
-            print(str(int(i/N*100))+'%')
+    count = 0
+    for img in data:
+        if count%(int(N/10))==0:
+            print(str(int(count/N*100))+'%')
+        count+=1
+        res_data.append(img)
+        original_image = img.reshape((28, 28))
         for action in actions:
-            modified = shift(data[i].reshape((28,28)), action, cval=0)
-            res_data=np.append(res_data, modified.reshape((1,-1)))
-        res_label=np.append(res_label, [label[i] for j in range(len(actions))])
-    return res_data, res_label
+            modified = shift(original_image, action, cval=0)
+            res_data.append(modified.flatten())
+    res_label = [label for label in labels for _ in range(5)]
+    return np.array(res_data), np.array(res_label)
 
 
 def my_cross_val_score(model, train, label, modify, cv=1, scoring='accuracy'):
     scores = np.array([])
-    train = np.array([np.array(train[i::cv]) for i in range(cv)])
-    label = np.array([np.array(label[i::cv]) for i in range(cv)])
+    train = np.array_split(train, cv)
+    label = np.array_split(label, cv)
     for i in range(cv):
         cv_train = np.array([])
         cv_label = np.array([])
